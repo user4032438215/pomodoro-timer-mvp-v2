@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- name="viewport" → 「ビューポート（表示領域）」に関する設定 -->
+  <!-- width=device-width → ページの横幅を「その端末の画面幅」に合わせる。-->
+  <!-- initial-scale=1.0 → ページを読み込んだときの拡大率を「1倍」にする。-->
+
+  <title>pomodoro-timer-mvp-v2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <h1>POMODORO TIMER</h1>
+
+  <output id="session-status" aria-live="polite"></output> <!-- セッションの状態を表示する場所 aria-live="polite"は音声読み上げサポート 実装予定 UI層だから今は後回し -->
+
+  <div id="timer-container">25:00</div>
+
+  <button id="control-btn">▶</button>
+
+  <div id="pomodoro-count">現在 0 ポモドーロ完了！</div> <!-- ポモドーロ完了数表示 実装予定 UI層だから今は後回し -->
+
+
+
+  <script src="js/timer.js"></script>
+</body>
+
+</html>

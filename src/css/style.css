@@ -1,0 +1,6 @@
+body {
+  display: flex;          /* 並べ方をFlexboxにする */
+  flex-direction: column; /* 縦に並べる（団子状） */
+  align-items: center;    /* 横方向の中央に揃える */
+  margin: 0;              /* 余白をなくす */
+}
