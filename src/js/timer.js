@@ -1,5 +1,3 @@
-// ---------------- ロジック層 ----------------
-
 // Web Notifications APIの許可リクエスト
 Notification.requestPermission().then(permission => {
   console.log("通知許可:", permission);
@@ -28,7 +26,7 @@ function countDown() {
   } else {
     clearInterval(timerId);
     timerId = null;
-    updateControlBtn(false); // ★ UI層呼び出し
+    updateControlBtn(false); // ★
     console.log("タイマー終了！");
 
     // 通知
@@ -45,15 +43,18 @@ function countDown() {
       if (pomodoroCount % 3 === 0) {
         currentSession = "longBreak";
         console.log("長い休憩へ移行");
+        
       } else {
         currentSession = "shortBreak";
         console.log("短い休憩へ移行");
+        
       }
       console.log("ポモドーロ回数:", pomodoroCount);
     } else {
       currentSession = "work";
       console.log("作業へ戻る");
       console.log("ポモドーロ回数:", pomodoroCount);
+      
     }
   }
 }
@@ -63,40 +64,41 @@ function startSession() {
   if (currentSession === "work") {
     seconds = sessionDurations.work * 60;
     console.log("作業開始");
+    document.getElementById("session-status").textContent = "💼 作業中"; // ★
   } else if (currentSession === "shortBreak") {
     seconds = sessionDurations.shortBreak * 60;
     console.log("短い休憩開始");
+    document.getElementById("session-status").textContent = "☕ 休憩中"; // ★
   } else if (currentSession === "longBreak") {
     seconds = sessionDurations.longBreak * 60;
     console.log("長い休憩開始");
+    document.getElementById("session-status").textContent = "🌿 長めの休憩中"; // ★
   }
-  updateTimerUI(seconds); // ★ UI層呼び出し
+  updateTimerUI(seconds); // ★
   timerId = setInterval(countDown, 1000);
-  updateControlBtn(true); // ★ UI層呼び出し
+  updateControlBtn(true); // ★
 }
-
-// ---------------- UI層 ----------------
 
 // 残り時間を表示する関数
 function updateTimerUI(seconds) {
   const minutes = Math.floor(seconds / 60);
   const secs = seconds % 60;
   const formatted = `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
-  document.getElementById("timer-container").textContent = formatted;
+  document.getElementById("timer-container").textContent = formatted; // ★
   console.log("残り時間:", formatted);
 }
 
-// コントロールボタンの表示更新
+// コントロールボタンの表示更新 // ★
 function updateControlBtn(isRunning) {
   document.getElementById("control-btn").textContent = isRunning ? "⏸" : "▶";
 }
 
+// ポモドーロ回数表示更新 // ★
 function updatePomodoroCountUI() {
   document.getElementById("pomodoro-count").textContent =
     `現在 ${pomodoroCount} ポモドーロ完了！`;
 }
 
-// ---------------- イベント層 ----------------
 
 //コントロールタイマーイベント
 let hasStarted = false; // 初期状態は「まだ開始していない」
