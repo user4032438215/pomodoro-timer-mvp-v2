@@ -12,12 +12,30 @@ let pomodoroCount = 0;
 const sessionDurations = {
   work: 2,        // 作業時間 25分
   shortBreak: 1,  // 短い休憩 5分
-  longBreak: 3    // 長い休憩 15分
+  longBreak: 3,    // 長い休憩 15分
+  longBreakFrequency: 3 // 長い休憩の頻度 とりあえず3回ごと
 };
 
 let seconds = sessionDurations.work * 60; // 作業時間を初期値に設定
 let currentSession = "work"; // "work" / "shortBreak" / "longBreak" workを初期値に設定
 let timerId = null; //setInterval()が返すIDを格納する変数。初期値はタイマーが動いていないことを示すnull
+
+//ローカルサーバーに保存されたJSON文字列を取得
+const savedSettings = JSON.parse(localStorage.getItem("pomodoroSettings"));
+// const savedSettings = localStorage.getItem("pomodoroSettings"); いらない説
+if (savedSettings) {
+  //保存された設定があれば、sessionDurationsオブジェクトを上書き
+  //pareseIntでJSON文字列を整数に変換、第二引数は基数10進数を意味する
+  // const parsed = JSON.parse(savedSettings); オブジェクトに変換するための変数だけど使ってないからいらない説
+
+  sessionDurations.work = parseInt(savedSettings.workDuration, 10);
+  sessionDurations.shortBreak = parseInt(savedSettings.shortBreak, 10);
+  sessionDurations.longBreak = parseInt(savedSettings.longBreak, 10);
+  sessionDurations.longBreakFrequency = parseInt(savedSettings.longBreakFrequency, 10);
+  console.log("保存された設定を読み込みました:", sessionDurations);
+} else {
+  console.log("保存された設定はありません。デフォルト設定を使用します。", sessionDurations);
+}
 
 //初期表示時間を"work"セッションに合わせて表示する // ★
 function formatTime(seconds) {

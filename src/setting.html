@@ -4,10 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- name="viewport" → 「ビューポート（表示領域）」に関する設定 -->
-  <!-- width=device-width → ページの横幅を「その端末の画面幅」に合わせる。-->
-  <!-- initial-scale=1.0 → ページを読み込んだときの拡大率を「1倍」にする。-->
-
   <title>setting-pomodoro-timer-mvp-v2</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -20,34 +16,37 @@
   <main>
     <div>設定</div>
 
-    <table>
-      <tr>
-        <td>作業時間</td>
-        <td><input type="number" id="work-duration-input" min="1" max="60" value="25" required></td>
-        <td>分</td>
-      </tr>
+    <form id="settings-form">
+      <table>
+        <tr>
+          <td>作業時間</td>
+          <td><input type="number" id="work-duration-input" min="1" max="60" value="2" required></td>
+          <td>分</td>
+        </tr>
 
-      <tr>
-        <td>休憩時間</td>
-        <td><input type="number" id="break-duration-input" min="1" max="60" value="5" required></td>
-        <td>分</td>
-      </tr>
+        <tr>
+          <td>休憩時間</td>
+          <td><input type="number" id="break-duration-input" min="1" max="60" value="1" required></td>
+          <td>分</td>
+        </tr>
 
-      <tr>
-        <td>長休憩時間</td>
-        <td><input type="number" id="long-break-duration-input" min="1" max="60" value="15" required></td>
-        <td>分</td>
-      </tr>
+        <tr>
+          <td>長休憩時間</td>
+          <td><input type="number" id="long-break-duration-input" min="1" max="60" value="3" required></td>
+          <td>分</td>
+        </tr>
 
-      <tr>
-        <td>長休憩の頻度</td>
-        <td><input type="number" id="long-break-frequency-input" min="1" max="60" value="3" required></td>
-        <td>ポモドーロにつき１回</td>
-      </tr>
-    </table>
+        <!-- テストだからvalueは短い値で設定 -->>
 
-    <button id="save-settings">保存</button>
+        <tr>
+          <td>長休憩の頻度</td>
+          <td><input type="number" id="long-break-frequency-input" min="1" max="60" value="3" required></td>
+          <td>ポモドーロにつき１回</td>
+        </tr>
+      </table>
 
+      <button type="submit">保存</button>
+    </form>
   </main>
 
   <script src="js/setting.js"></script>
