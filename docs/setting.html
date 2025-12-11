@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- name="viewport" → 「ビューポート（表示領域）」に関する設定 -->
+  <!-- width=device-width → ページの横幅を「その端末の画面幅」に合わせる。-->
+  <!-- initial-scale=1.0 → ページを読み込んだときの拡大率を「1倍」にする。-->
+
+  <title>setting-pomodoro-timer-mvp-v2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header>
+    <a href="index.html" class="back-link">←</a>
+  </header>
+
+  <main>
+    <div>設定</div>
+    <table>
+      <tr>
+        <td>作業時間</td>
+        <td><input type="number" id="work-duration-input" min="1" max="120" value="25"></td>
+        <td>分</td>
+      </tr>
+
+      <tr>
+        <td>休憩時間</td>
+        <td><input type="number" id="break-duration-input" min="1" max="60" value="5"></td>
+        <td>分</td>
+      </tr>
+
+      <tr>
+        <td>長休憩時間</td>
+        <td><input type="number" id="long-break-duration-input" min="5" max="30" value="15"></td>
+        <td>分</td>
+      </tr>
+
+      <tr>
+        <td>長休憩の頻度</td>
+        <td><input type="number" id="long-break-frequency-input" min="1" max="5" value="3"></td>
+        <td>ポモドーロにつき１回</td>
+      </tr>
+
+  </main>
+</body>
+
+</html>
