@@ -1,3 +1,5 @@
+ //UI層は COに★ 将来的に分割する可能性あり
+
 // Web Notifications APIの許可リクエスト
 Notification.requestPermission().then(permission => {
   console.log("通知許可:", permission);
@@ -17,12 +19,23 @@ let seconds = sessionDurations.work * 60; // 作業時間を初期値に設定
 let currentSession = "work"; // "work" / "shortBreak" / "longBreak" workを初期値に設定
 let timerId = null; //setInterval()が返すIDを格納する変数。初期値はタイマーが動いていないことを示すnull
 
+//初期表示時間を"work"セッションに合わせて表示する // ★
+function formatTime(seconds) {
+  const m = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const s = String(seconds % 60).padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+document.getElementById("timer-container").textContent =
+  formatTime(sessionDurations[currentSession] * 60); // ★
+
+
 
 // カウントダウン処理
 function countDown() {
   seconds--;
   if (seconds >= 0) {
-    updateTimerUI(seconds); // ★ UI層呼び出し
+    updateTimerUI(seconds); // ★
   } else {
     clearInterval(timerId);
     timerId = null;

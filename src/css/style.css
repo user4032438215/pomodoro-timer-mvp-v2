@@ -14,6 +14,15 @@ main {
   color: black;          /* アイコンの色を黒に設定 */
 }
 
+.menu-link {
+  position: absolute;    /* 画面上の絶対位置指定 */
+  top: 10px;             /* 上からの距離 */
+  left: 10px;            /* 左からの距離 */
+  font-size: 24px;       /* 矢印を少し大きめに */
+  text-decoration: none; /* 下線を消す */
+  color: black;          /* アイコンの色を黒に設定 */
+}
+
 .back-link {
   position: absolute;    /* 画面上の絶対位置指定 */
   top: 10px;             /* 上からの距離 */
