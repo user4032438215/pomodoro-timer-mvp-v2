@@ -8,15 +8,44 @@
   <!-- width=device-width → ページの横幅を「その端末の画面幅」に合わせる。-->
   <!-- initial-scale=1.0 → ページを読み込んだときの拡大率を「1倍」にする。-->
 
-  <title>pomodoro-timer-mvp-v2</title>
+  <title>index-pomodoro-timer-mvp-v2</title>
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* 簡易メニューのスタイル */
+    .menu-bar {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 10px;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .menu-bar.open {
+      display: block;
+    }
+    .menu-bar a {
+      display: block;
+      margin: 5px 0;
+      text-decoration: none;
+      color: #333;
+    }
+  </style>
+
 </head>
 
 <body>
 
   <header>
     <a href="setting.html" class="setting-link">⚙</a>
-    <a href="" class="menu-link" aria-label="メニュー">≡</a> <!-- 張りぼてのメニューバーorメニューページへのリンク とりあえず要素はa -->
+
+    <button href="#" id="menu-toggle" class="menu-toggle" aria-label="メニュー">≡</button>
+    <!-- 開閉するメニューバー -->
+    <nav id="menu-bar" class="menu-bar">
+      <a href="activity.html">今月の活動記録</a>
+    </nav>
+
   </header>
 
   <main>
@@ -38,6 +67,17 @@
 
 
   <script src="js/timer.js"></script>
+
+  <!-- インラインスクリプトで開閉制御 -->
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const menuBar = document.getElementById("menu-bar");
+
+    menuToggle.addEventListener("click", function (e) { //preventDefaultでページリロードを防ぐために引数eを宣言
+      e.preventDefault(); 
+      menuBar.classList.toggle("open");
+    });
+  </script>
 </body>
 
 </html>
