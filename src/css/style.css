@@ -5,14 +5,7 @@ main {
   margin: 0;              /* 余白をなくす */
 }
 
-.setting-link {
-  position: absolute;    /* 画面上の絶対位置指定 */
-  top: 10px;             /* 上からの距離 */
-  right: 10px;           /* 右からの距離 */
-  font-size: 24px;       /* アイコンを少し大きめに */
-  text-decoration: none; /* 下線を消す */
-  color: black;          /* アイコンの色を黒に設定 */
-}
+
 
 .menu-link {
   position: absolute;    /* 画面上の絶対位置指定 */

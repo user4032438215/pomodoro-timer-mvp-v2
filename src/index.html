@@ -12,6 +12,26 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
+    .header-right-links {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      /* 横並びにする */
+      gap: 10px;
+      /* 要素間の間隔を10pxに */
+      font-size: 24px;
+
+    }
+
+
+
+    .header-right-links a {
+      text-decoration: none;
+      /* 下線を消す */
+      color: black;
+    }
+
     /* 簡易メニューのスタイル */
     .menu-bar {
       display: none;
@@ -22,9 +42,11 @@
       border: 1px solid #ccc;
       padding: 10px;
     }
+
     .menu-bar.open {
       display: block;
     }
+
     .menu-bar a {
       display: block;
       margin: 5px 0;
@@ -38,9 +60,14 @@
 <body>
 
   <header>
-    <a href="setting.html" class="setting-link">⚙</a>
+    <div class="header-right-links">
+      <a href="login.html" class="login-link" aria-label="ログイン">ログイン</a>
+      <a href="register.html" class="register-link" aria-label="新規登録">新規登録</a>
+      <a href="setting.html" class="setting-link" aria-label="設定">&#9881;</a>
+    </div>
 
-    <button href="#" id="menu-toggle" class="menu-toggle" aria-label="メニュー">≡</button>
+
+    <button href="#" id="menu-toggle" class="menu-toggle" aria-label="メニュー">&#8801;</button>
     <!-- 開閉するメニューバー -->
     <nav id="menu-bar" class="menu-bar">
       <a href="activity.html">今月の活動記録</a>
@@ -59,7 +86,7 @@
     <button id="control-btn">▶</button>
 
     <p id="pomodoro-count">現在 0 ポモドーロ完了！</p>
-    
+
   </main>
 
 
@@ -74,7 +101,7 @@
     const menuBar = document.getElementById("menu-bar");
 
     menuToggle.addEventListener("click", function (e) { //preventDefaultでページリロードを防ぐために引数eを宣言
-      e.preventDefault(); 
+      e.preventDefault();
       menuBar.classList.toggle("open");
     });
   </script>
