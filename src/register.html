@@ -18,7 +18,7 @@
     <div>
       <form id="register-form">
         <div>
-          <label for="username-input">ユーザー名</label>
+          <label for="username">ユーザー名</label>
           <input type="text" id="username" required>
         </div>
 
@@ -29,37 +29,34 @@
 
         <div>
           <label for="password">パスワード</label>
-          <input type="password" id="password" required>
+          <input type="password" id="password" aria-describedby="password-help" required>
+          <small id="password-help">パスワードは8文字以上にしてください</small>
         </div>
 
-        <div>
-          <label for="password">パスワード(確認用)</label>
-          <input type="password" id="confirm-password" required>
-        </div>
 
         <button type="submit">登録</button>
       </form>
     </div>
   </main>
 
+  <!-- バリデーションのスクリプト とりあえずインライン -->
   <script>
     const form = document.getElementById("register-form");
     form.addEventListener("submit", function (e) {
       e.preventDefault(); // ページリロード防止
 
 
-      const name = document.getElementById("username").value.trim();
+      const username = document.getElementById("username").value.trim();
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
-      const confirmPassword = document.getElementById("confirm-password").value.trim();
 
-      if (!name || !email || !password || !confirmPassword) {
+      if (!username || !email || !password) {
         alert("全ての項目を入力してください");
         return;
       }
 
-      if (password !== confirmPassword) {
-        alert("パスワードと確認用パスワードが一致しません。");
+      if (password.length < 8) {
+        alert("パスワードは8文字以上にしてください");
         return;
       }
 
@@ -69,10 +66,13 @@
     });
   </script>
 
-  // テスト用のダミー認証
-  name "TestUser"
-  email "test@example.com"
-  password "1234"
+  <div>
+    <!-- テスト用のダミー認証
+    name "TestUser"
+    email "test@example.com"
+    password "12345678" -->
+  </div>
+
 </body>
 
 </html>

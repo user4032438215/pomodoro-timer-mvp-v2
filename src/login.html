@@ -20,7 +20,7 @@
 
         <div>
           <label for="email">メールアドレス</label>
-          <input type="text" id="email" required>
+          <input type="email" id="email" required>
         </div>
 
         <div>
@@ -37,6 +37,7 @@
     </div>
   </main>
 
+  <!-- バリデーションのスクリプト とりあえずインライン -->
   <script>
     const form = document.getElementById("login-form");
     form.addEventListener("submit", function (e) {
@@ -52,7 +53,7 @@
       }
 
       // ダミー処理（本来はサーバーに送信）
-      if (email === "test@example.com" && password === "1234") {
+      if (email === "test@example.com" && password === "12345678") {
         alert("ログイン成功！");
         window.location.href = "index.html";
       } else {
@@ -61,9 +62,13 @@
     });
   </script>
 
-  // テスト用のダミー認証
-  email "test@example.com"
-  password "1234"
+  <div>
+    <!-- テスト用のダミー認証
+    name "TestUser"
+    email "test@example.com"
+    password "12345678" -->
+  </div>
+
 </body>
 
 </html>
