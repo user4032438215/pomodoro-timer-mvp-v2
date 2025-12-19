@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 // ただし body-parser は最近は不要で、"app.use(express.json());"を使う方が現代的という一点だけアップデート余地がある。
-// これを直せば、MVPのバックエンド初期設計としてかなり綺麗な流れになっている。
+// これを直せば、MVPのバックエンド初期設計としてかなり綺麗な流れになっている。  らしい
 
 // 仮のルート
 app.get('/', (req, res) => {
