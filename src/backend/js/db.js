@@ -22,5 +22,5 @@ module.exports = pool;
 
 const PORT = 3000;
 
-app.listen(PORT, () => console.log("✅ 起動: http://localhost:" + PORT)); //サーバー起動テスト node db.js
+app.listen(PORT, () => console.log("✅ 起動: http://localhost:" + PORT)); //サーバー起動テストOK node db.js
 
