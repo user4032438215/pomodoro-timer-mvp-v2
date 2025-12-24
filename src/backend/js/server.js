@@ -1,20 +1,24 @@
 //Express等のエントリーポイント
-
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-
+const express = require("express");
 const app = express();
+
+const cors = require("cors");
 app.use(cors());
-app.use(bodyParser.json());
-// ただし body-parser は最近は不要で、"app.use(express.json());"を使う方が現代的という一点だけアップデート余地がある。
-// これを直せば、MVPのバックエンド初期設計としてかなり綺麗な流れになっている。  らしい
+app.use(express.json());
 
-// 仮のルート
-app.get('/', (req, res) => {
-  res.send('Backend is running');
-});
 
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
+
+// ルート読み込み
+const registerRoute = require("./register");
+const loginRoute = require("./login");
+
+app.use("/register", registerRoute);
+app.use("/login", loginRoute);
+
+
+
+// node server.js というコマンドでサーバーを起動。『Ctrl+C』でサーバーを停止
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log("Server running on http://localhost:" + PORT);
 });

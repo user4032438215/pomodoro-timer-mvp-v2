@@ -1,13 +1,19 @@
 //PostgreSQL接続設定（pgライブラリ）
 
-require("dotenv").config(); //.envファイルを読み込む
+//.envファイルを読み込む
+require("dotenv").config(); 
 
-const express = require("express");
-const app = express(); // Expressフレームワークを読み込んでアプリケーションを作成
+//-- server.jsに置くべきコード
+// // Expressフレームワークを読み込んでアプリケーションを作成
+// const express = require("express");
+// const app = express(); 
 
-const cors = require("cors"); // CORSを許可するためのライブラリを読み込む
+// // CORSを許可するためのライブラリを読み込む
+// const cors = require("cors"); 
+//-- 
 
-const { Pool } = require("pg"); // PostgreSQL用ライブラリを読み込む
+// PostgreSQL用ライブラリを読み込む
+const { Pool } = require("pg"); 
 
 //.envファイル+.gitignoreで管理
 const pool = new Pool({
@@ -19,8 +25,3 @@ const pool = new Pool({
 });
 
 module.exports = pool;
-
-const PORT = 3000;
-
-app.listen(PORT, () => console.log("✅ 起動: http://localhost:" + PORT)); //サーバー起動テストOK node db.js
-
