@@ -1,11 +1,18 @@
+//backend/js/login.js
+
 const express = require("express");
+
+// login に関する処理だけを担当する小さなサーバーサーバーを作る
 const router = express.Router();
+
+//db.jsへのパイプライン
 const pool = require("./db");
 
 // Read（ログインチェック）
 router.post("/", (req, res) => {
   const { email, password } = req.body;
 
+  
   if (!email || !password) {
     return res.status(400).json({ ok: false, error: "メールとパスワードは必須です" });
   }
@@ -26,4 +33,5 @@ router.post("/", (req, res) => {
     });
 });
 
+//server.js へのパイプライン
 module.exports = router;

@@ -1,19 +1,24 @@
+//backend/js/register.js
+
 const express = require("express");
-const router = express.Router();   // ← 「 /register に関する処理だけを担当する小さなサーバーサーバー」を作る
-const pool = require("./db");      // ← db.jsへのパイプライン
+
+//register に関する処理だけを担当する小さなサーバーサーバーを作る
+const router = express.Router();
+
+//db.jsへのパイプライン
+const pool = require("./db");
 
 // Create（新規ユーザー登録）
 router.post("/", (req, res) => {
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
 
-  // サーバー側の簡易チェック
-  if (!email || !password) {
-    return res.status(400).json({ ok: false, error: "メールとパスワードは必須です" });
+  if (!username || !email || !password) {
+    return res.status(400).json({ ok: false, error: "すべてのフォームを入力してください" });
   }
 
-  const sql = "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *";
+  const sql = "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *";
 
-  pool.query(sql, [email, password])
+  pool.query(sql, [username, email, password])
     .then(result => {
       res.json({ ok: true, user: result.rows[0] });
     })
@@ -23,6 +28,5 @@ router.post("/", (req, res) => {
     });
 });
 
-
-
-module.exports = router;  // ← server.js へのパイプライン
+//server.js へのパイプライン
+module.exports = router;  

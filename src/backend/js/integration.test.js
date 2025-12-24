@@ -1,0 +1,102 @@
+//node src/backend/js/integration.test.js
+
+// const fetch = require("node-fetch");
+const pool = require("./db");
+
+// テスト用ユーザー（既存のダミーデータを使用）
+const testEmail = "alice@example.com";
+const testPassword = "alice123";
+
+// 1. DB接続テスト
+function testDB() {
+  console.log("=== 🧪 DB接続テスト ===");
+
+  return pool.query("SELECT NOW()")
+    .then(result => {
+      console.log("✅ DB接続成功:", result.rows[0]);
+    })
+    .catch(err => {
+      console.error("❌ DB接続エラー:", err);
+    });
+}
+
+// 2. サーバー起動テスト
+function testServer() {
+  console.log("\n=== 🧪 サーバー起動テスト ===");
+
+  return fetch("http://localhost:3000")
+    .then(() => {
+      console.log("✅ サーバー起動確認: OK");
+    })
+    .catch(err => {
+      console.error("❌ サーバーに接続できません:", err);
+    });
+}
+
+// 3. /register API テスト（新規ユーザー登録）
+function testRegister() {
+  console.log("\n=== 🧪 /register APIテスト ===");
+
+  const newUsername = "new_user_" + Date.now();
+  const newEmail = "new_user_" + Date.now() + "@example.com";
+  const newPassword = "testpass123";
+
+  return fetch("http://localhost:3000/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: newUsername,
+      email: newEmail,
+      password: newPassword
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log("📡 /register の返答:", data);
+    })
+    .catch(err => {
+      console.error("❌ /register テスト中にエラー:", err);
+    });
+}
+
+// 4. /login API テスト（既存ユーザーでログイン）
+function testLogin() {
+  console.log("\n=== 🧪 /login APIテスト ===");
+
+  return fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: testEmail,
+      password: testPassword
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log("📡 /login の返答:", data);
+    })
+    .catch(err => {
+      console.error("❌ /login テスト中にエラー:", err);
+    });
+}
+
+// 5. 全テストを順番に実行
+async function runAllTests() {
+  console.log("====================================");
+  console.log("🚀 integration.test.js: 総合テスト開始");
+  console.log("====================================");
+
+  await testDB();
+  await testServer();
+  await testRegister();
+  await testLogin();
+
+  console.log("\n====================================");
+  console.log("🎉 全テスト完了");
+  console.log("====================================");
+
+  pool.end(); // DB接続を閉じる
+}
+
+runAllTests();
+

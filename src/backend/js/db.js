@@ -1,16 +1,5 @@
-//PostgreSQL接続設定（pgライブラリ）
-
 //.envファイルを読み込む
 require("dotenv").config(); 
-
-//-- server.jsに置くべきコード
-// // Expressフレームワークを読み込んでアプリケーションを作成
-// const express = require("express");
-// const app = express(); 
-
-// // CORSを許可するためのライブラリを読み込む
-// const cors = require("cors"); 
-//-- 
 
 // PostgreSQL用ライブラリを読み込む
 const { Pool } = require("pg"); 
@@ -24,4 +13,5 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
+// 接続確認用のコード
 module.exports = pool;
